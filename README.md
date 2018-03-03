@@ -5,7 +5,7 @@ Exercises for http://sch3lp.github.io/tdd-course
 
 ## Technology
 
-Preferrably Java. Test Harnass with [JUnit5](https://junit.org/junit5/docs/current/user-guide/#writing-tests). Assertions with [AssertJ](http://joel-costigliola.github.io/assertj/).
+Preferably Java. Test Harnass with [JUnit5](https://junit.org/junit5/docs/current/user-guide/#writing-tests). Assertions with [AssertJ](http://joel-costigliola.github.io/assertj/).
 
 
 ## Assignment
