@@ -1,7 +1,0 @@
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\bin\Debug\Spreadsheet.UnitTests.dll
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\bin\Debug\Spreadsheet.UnitTests.pdb
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\bin\Debug\nunit.framework.dll
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\bin\Debug\nunit.framework.xml
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\obj\Debug\Spreadsheet.UnitTests.csprojResolveAssemblyReference.cache
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\obj\Debug\Spreadsheet.UnitTests.dll
-C:\Development\github\tdd-course-exercise-3\csharp\Spreadsheet\Spreadsheet.UnitTests\obj\Debug\Spreadsheet.UnitTests.pdb
