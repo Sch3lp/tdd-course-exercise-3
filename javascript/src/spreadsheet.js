@@ -1,2 +1,2 @@
 
-// doe uw best he. 
+// do your best!

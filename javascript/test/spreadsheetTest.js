@@ -1,8 +1,8 @@
 
-describe("testen", function() {
+describe("you", function() {
 
-	// Succes!
-	it("zou testen moeten schrijven om de leraren tevreden te stellen", function() {
+	// Success!
+	it("should write tests to appease your teacher!", function() {
 		expect(true).toBe(false);
 	});
 

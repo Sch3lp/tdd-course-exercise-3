@@ -1,4 +1,4 @@
-package be.pxl.tdd;
+package be.schelp.tdd;
 
 public class SpreadSheet {
 }
