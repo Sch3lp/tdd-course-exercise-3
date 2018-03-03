@@ -1,55 +1,58 @@
 
 # TDD Lab Exercise 3
 
-Oefeningen voor http://wgroeneveld.github.io/tdd-course
+Exercises for http://sch3lp.github.io/tdd-course
 
-## Technologie
+## Technology
 
-Liefst in Java. Test Harnas met [JUnit](https://github.com/junit-team/junit4/wiki/Getting-started). Assertions met [AssertJ](http://joel-costigliola.github.io/assertj/).
-Andere talen zijn ook beschikbaar, zie submapjes. 
+Preferrably Java. Test Harnass with [JUnit5](https://junit.org/junit5/docs/current/user-guide/#writing-tests). Assertions with [AssertJ](http://joel-costigliola.github.io/assertj/).
 
 
-## Opdracht beschrijving
+## Assignment
 
-Werk story per story af, test first!
+We're going to be implementing a simplistic spreadsheet program.
 
-Commit (en push) per story!
+Finish one story at a time and always apply Test First!
 
-### Unit testen
+Make at least one commit per story!
 
-Er zijn **geen testen voorzien** - je zal je beste beentje moeten voor zetten...
+### Unit tests
 
-**Wat moet ik nu precies testen?** Alles! Happy path, edge cases, logica, ...
+We did not supply **any tests** so you'll have to do your very best...
 
-### Story 1: simpele spreadsheet
+**Ok but what do I test exactly?**
 
-- Onbeperkt aantal rijen/kolommen
-- Rij = Cijfer 1 -> 9999...
-- Kolom = Letter A -> Z, AA -> ZZ, ...
-- Cellen zijn standaard een lege waarde ("", niet `null` of `undefined`)
-- Cellen kunnen tekst opslaan
-- Mogelijk om inhoud van cel uit te lezen
+![](test-all-the-things.jpg)
 
-Denk aan je eindgebruikers. Een "" is duidelijker dan `null`! 
+Happy path, edge cases, logic, ...
 
-### Story 2: numerics & literal values
+### Story 1: Simple spreadsheet
 
-- **Numerische cellen** worden automatisch herkend:
-- Tekst `"  124  "` (met spaties) wordt het getal `124` (zonder spaties)
-- Mogelijk om **literaire** inhoud van cel uit te lezen
-- Cel met tekst `"  124  "` heeft literaire waarde `"  124  "` en waarde `124`
+- A spreadsheet should be able to contain an unlimited amount of rows and columns
+- A Row is identified with a number from 1 onwards...
+- A Column is identified with a letter: A -> Z, AA -> ZZ, ...
+- Cells are empty by default (`""`, not `null` or `undefined`)
+- Cells should be able to store text
+- You should be able to read a cell's contents
 
-### Story 3: Formules
+### Story 2: Numerical & literal values
 
-- `"=234"` is een formule, `" =234"` (spatie) is tekst
-- Waarde van formule `"=234"` is het getal `234`. Literaire waarde = de formule
-- Soorten:
-    - Constanten `=124`
-    - Met haakjes `=((124))`
-    - Simpele berekeningen `=3+5`, `=5-3`, `=4*2`
-    - Complexe berekeningen `=7*(2+3)*((((2+1))))`
+- Cells with numerical content are evaluated automatically:
+- Text `"  124  "` (with spaces) becomes the number `124` (without spaces)
+- You should be able to read the literal contents of a cell
+- Cell with text `"  124  "` has a literal value of `"  124  "` and value of `124`
 
-Tip: berekeningen zoals hierboven hoef je niet zelf te proberen evalueren. Hiervoor kan je de _Nashorn JS_ engine in Java 8 gebruiken:
+### Story 3: Formulas
+
+- `"=234"` is a formula, `" =234"` (space) is plain text
+- The value of formula `"=234"` is the number `234`. Its literal value is the formula itself
+- Kinds:
+    - Constants `=124`
+    - Wrapped with braces `=((124))`
+    - Simple calculations `=3+5`, `=5-3`, `=4*2`
+    - Complex calculations `=7*(2+3)*((((2+1))))`
+
+Tip: don't try to evaluate the calculations above by yourself. You can use Java's _Nashorn JS_:
 
 ```java
 ScriptEngineManager factory = new ScriptEngineManager();
@@ -57,35 +60,25 @@ ScriptEngine engine = factory.getEngineByName("nashorn");
 engine.eval('4 + 5');
 ```
 
-In Javascript is dat gewoon een kwestie van `eval()`.
+In Javascript it's simply a matter of using `eval()`.
 
-In C# kan je hiervoor JScript gebruiken (toevegen aan assemblies):
+### Story 4: Catching formula errors
 
-```C#
-var engine = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
-var result = Microsoft.JScript.Eval.JScriptEvaluate("3+4", engine);
-```
+When a formula contains an error, the value of the cell should be `**#ERROR**`.
 
-Het spreekt voor zich dat hier testen op zijn plaats zijn.
+### Story 5: References
 
-### Story 4: Formule fouten opvangen
+When cell `A1` has a literal value of `=A2`:
 
-Wanneer een formule een fout bevat, moet de waarde van de cel "**#ERROR**" zijn.
+- The value should be the value that is pointed to.
+- When the value in A2 changes, the value in A1 changes as well.
+- References to references should be possible! A1 -> A2 -> A3
+- Circular references are impossible and should have `**#CIRCULAR**` as value.
 
-### Story 5: Dependencies
+### Story 6: Functions
 
-`=A2` als inhoud van cel `A1` bijvoorbeeld:
+For example: `=SUM(A1:A6)`.
 
-- Waarde = waarde van cel waar je naar verwijst.
-- Indien waarde A2 verandert, verandert deze cel ook.
-- Referenties naar referenties = mogelijk! A1 -> A2 -> A3
-- Circulaire referenties vermijden.
-- Geef "**#CIRCULAR**" fout als waarde.
-
-### Story 6: Functies
-
-`=SUM(A1:A6)`bijvoorbeeld.
-
-- Sommatie functie met `SUM(RANGE)`
-- Gemiddelde functie met `AVERAGE(RANGE)`
+- Provide a summing function that can be called with `SUM(RANGE)` as a literal value
+- Provide an averaging function that can be called with `AVERAGE(RANGE)` as a literal value
 
