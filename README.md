@@ -28,11 +28,12 @@ Happy path, edge cases, logic, ...
 
 ### Story 1: Simple spreadsheet
 
-- A spreadsheet should be able to contain an unlimited amount of rows and columns
+- A spreadsheet is identified by an unlimited amount of rows and columns
 - A Row is identified with a number from 1 onwards...
 - A Column is identified with a letter: A -> Z, AA -> ZZ, ...
 - Cells are empty by default (`""`, not `null` or `undefined`)
 - Cells should be able to store text
+- A Cell can be identified by the combination of a column and a row.
 - You should be able to read a cell's contents
 
 ### Story 2: Numerical & literal values
